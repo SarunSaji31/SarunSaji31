@@ -1,22 +1,18 @@
-# Hi, I'm Sarun Saji 👋
+# Hi, I'm Sarun Saji
 
-I'm a **Backend Developer** with strong experience in building scalable, data-driven web applications using **Python and Django**.  
-I have worked on real-world production projects, backend systems, and internal tools, focusing on clean architecture, performance, and maintainability.
+Backend Developer specializing in **Python and Django**, with experience building scalable, data-driven web applications and backend systems.
 
-📍 Based in Denmark | 🌍 Open to **Backend Developer** opportunities
-
----
-
-## 💼 Professional Summary
-- Backend Developer with hands-on experience in **Python & Django**
-- Designed and developed secure, scalable backend systems
-- Strong understanding of database design and API development
-- Experience building internal tools and automation-driven systems
-- Comfortable working with real production environments
+📍 Denmark | Open to Backend Developer opportunities
 
 ---
 
-## 🛠️ Technical Skills
+## About Me
+I am a backend-focused developer with hands-on experience designing and implementing server-side applications, APIs, and database-driven systems.  
+I enjoy working on clean architecture, efficient data handling, and production-ready solutions.
+
+---
+
+## Technical Skills
 **Backend & Languages**
 - Python
 - Django
@@ -25,12 +21,12 @@ I have worked on real-world production projects, backend systems, and internal t
 **Databases**
 - PostgreSQL
 - MySQL
-- Django ORM
 
-**APIs & Architecture**
-- REST APIs
+**Backend Concepts**
+- REST API development
+- Database design
 - Backend business logic
-- Data processing & automation
+- Data processing and automation
 
 **Tools & Platforms**
 - Git & GitHub
@@ -41,19 +37,18 @@ I have worked on real-world production projects, backend systems, and internal t
 
 ---
 
-## 📌 Featured Projects
-⬇️ Check my pinned repositories below ⬇️  
-Each project demonstrates backend logic, data handling, and real-world use cases.
+## Projects
+Please see my pinned repositories below for examples of backend systems and real-world projects I’ve built using Python and Django.
 
 ---
 
-## 🎯 Career Focus
-- Backend Developer (Junior / Mid-level)
-- Python & Django Backend Roles
+## Career Focus
+- Backend Developer (Python / Django)
+- API and data-driven backend systems
 
 ---
 
-## 📫 Contact
-📧 Personal Email: sarunsaji31@gmail.com  
-💼 Work Email: info@sarunsaji.com  
-🌐 Portfolio: https://www.sarunsaji.com
+## Contact
+Personal: sarunsaji31@gmail.com  
+Work: info@sarunsaji.com  
+Portfolio: https://www.sarunsaji.com
