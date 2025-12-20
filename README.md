@@ -49,5 +49,7 @@ Each project includes documentation and setup instructions.
 ---
 
 ## 📫 Contact
-📧 Email: sarunsaji31@gmail.com  
+📧 Personal Email: sarunsaji31@gmail.com  
+💼 Work Email: info@sarunsaji.com  
 🌐 Portfolio: https://www.sarunsaji.com
+
