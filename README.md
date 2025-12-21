@@ -35,6 +35,7 @@ I enjoy working on clean architecture, efficient data handling, and production-r
 - AWS (EC2, S3)
 - Linux
 - Nginx, Gunicorn
+- n8n automation tool
 
 ---
 
