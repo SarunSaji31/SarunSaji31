@@ -17,6 +17,7 @@ I enjoy working on clean architecture, efficient data handling, and production-r
 - Python
 - Django
 - SQL
+- Javascript
 
 **Databases**
 - PostgreSQL
@@ -30,7 +31,7 @@ I enjoy working on clean architecture, efficient data handling, and production-r
 
 **Tools & Platforms**
 - Git & GitHub
-- Docker (basic)
+- Docker 
 - AWS (EC2, S3)
 - Linux
 - Nginx, Gunicorn
