@@ -1,82 +1,67 @@
 # Hi, I'm Sarun Saji 👋
 
-Backend Developer specializing in **Python and Django**, with hands-on experience building **production-oriented backend systems, automation workflows, and data-driven applications**.
+Backend Developer specializing in Python, Django, and Android Kotlin, with hands-on experience building AI-integrated applications, production backend systems, and automated workflows.
 
-📍 Denmark | Open to Backend Developer & Backend Automation roles
+📍 Aalborg, Denmark | Open to Backend, Mobile, & AI Automation roles
+
+---
+
+## 🚀 Featured Project: Voxly AI
+**Voxly** is a voice-powered AI keyboard for Android that provides real-time transcription and seamless text input.
+- **Mobile Core**: Developed a custom Android Input Method Service (IME) using **Kotlin** and **Jetpack Compose**.
+- **AI Integration**: Implemented a real-time audio pipeline that records voice data and processes it via a hosted AI backend on **Hugging Face Spaces**.
+- **Cloud Infrastructure**: Integrated **Firebase Auth** and Google Identity Services for secure user personalization.
 
 ---
 
 ## About Me
-I am a backend-focused developer with practical experience designing and maintaining **server-side systems** used to handle real operational workflows.
+I am a developer focused on bridging the gap between **mobile interfaces and powerful backend AI**. I design systems that handle complex operational workflows, from server-side logic to user-facing mobile tools.
 
 My work focuses on:
-- Clean backend architecture
-- Reliable data processing
-- Automation of repetitive operational tasks
-- Building systems that replace manual Excel-based workflows
-
-I enjoy working behind the scenes — turning complex business logic into stable, maintainable backend solutions.
+- **AI-Driven Mobile Tools**: Creating specialized Android applications that leverage LLMs and transcription models.
+- **Clean Backend Architecture**: Designing stable server-side systems using Python and Django.
+- **Workflow Automation**: Building n8n pipelines to replace manual operational tasks.
 
 ---
 
 ## Technical Skills
 
+### Mobile & AI
+- **Kotlin** & Android SDK
+- **Jetpack Compose** (Modern UI)
+- **AI Integration**: Hugging Face API, Real-time transcription
+
 ### Backend & Languages
-- Python  
-- Django  
-- JavaScript (backend usage & integrations)
-
-### Data & Processing
-- Pandas (data cleaning, aggregation, reporting)
-- Excel / CSV automation
-- File ingestion & validation pipelines
-
-### Databases
-- PostgreSQL  
-- MySQL  
-- Django ORM
-
-### Backend Concepts
-- REST API development
-- Backend business logic
-- Authentication & role-based access
-- Data validation & integrity
-- Reporting systems & dashboards
+- **Python** & **Django**
+- **JavaScript** (integrations)
+- **PostgreSQL**, MySQL, & Django ORM
 
 ### Automation & DevOps
-- n8n (workflow automation, integrations, scheduled jobs)
-- Docker
-- Git & GitHub
-- Linux
-- Nginx & Gunicorn
-- AWS (EC2, S3 – deployment & hosting)
+- **n8n** (Automated reporting, backup systems, & recovery protocols)
+- **Docker** & Linux
+- **Deployment**: Nginx, Gunicorn, AWS (EC2, S3), & RunPod (GPU Fine-tuning)
+- **Git & GitHub**
 
 ---
 
 ## Projects
-My pinned repositories showcase **real-world backend systems**, including:
-
-- Django-based operational dashboards  
-- Driver & fleet data management systems  
-- Automated reporting (Excel / CSV / XLSX)  
-- Backend automation using **n8n**  
-- Data-heavy applications focused on reliability and validation  
-
-Each project is built with a **backend-first mindset**, focusing on correctness, maintainability, and real operational needs.
+- **Voxly Android AI Keyboard**: Real-time voice-to-text transcription engine.
+- **Aalborg Wind/Price Data Pipeline**: n8n-driven real-time data ingestion to Hugging Face Spaces.
+- **Driver & Fleet Management Systems**: Django-based operational dashboards.
+- **n8n Recovery & Backup Systems**: Automated protocols for database and infrastructure reliability.
 
 ---
 
 ## Career Focus
 I am actively seeking opportunities as a:
-
 - **Backend Developer (Python / Django)**
-- **Backend Automation / Operations Support Engineer**
-- **Data-driven backend systems roles**
+- **Mobile AI Developer (Android / Kotlin)**
+- **Automation & Operations Engineer**
 
 ---
 
 ## Contact
-📧 Personal: sarunsaji31@gmail.com  
-📧 Work: info@sarunsaji.com  
-🌐 Portfolio: https://www.sarunsaji.com  
+📧 Personal: sarunsaji31@gmail.com
+📧 Work: info@sarunsaji.com
+🌐 Portfolio: https://www.sarunsaji.com
 🔗 LinkedIn: https://www.linkedin.com/in/sarunsaji
