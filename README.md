@@ -26,18 +26,18 @@ A fully self-hosted Retrieval-Augmented Generation (RAG) system running on a Het
 ### Architecture
 ```
 Browser / Terminal
-      │
-      ▼
+        │
+        ▼
 rag.sarunsaji.com (Nginx + SSL)
-      │
-      ▼
-Streamlit Frontend (port 8085)
-      │
-      ▼
-FastAPI RAG Backend (port 8002)
-      │
-      ▼
-ChromaDB Vector Store (port 8003)
+        │
+        ▼
+Streamlit Frontend
+        │
+        ▼
+FastAPI RAG Backend
+        │
+        ▼
+ChromaDB Vector Store
 ```
 
 ### Stack
