@@ -110,4 +110,4 @@ I am actively seeking opportunities as a:
 📧 Personal: sarunsaji31@gmail.com
 📧 Work: info@sarunsaji.com
 🌐 Portfolio: https://www.sarunsaji.com
-🔗 LinkedIn: https://www.linkedin.com/in/sarunsaji
+🔗 LinkedIn:https://www.linkedin.com/in/sarun-saji-523b54169/
