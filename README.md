@@ -1,113 +1,148 @@
 # Hi, I'm Sarun Saji 👋
-Backend Developer specializing in Python, Django, and Android Kotlin, with hands-on experience building AI-integrated applications, production backend systems, and automated workflows.
 
-📍 Aalborg, Denmark | Open to Backend, Mobile, & AI Automation roles
+Backend Developer specializing in Python, Django, FastAPI, and Android Kotlin. Passionate about building AI-integrated mobile experiences and production-grade backend systems.
+
+📍 Aalborg, Denmark | Open to Backend, Mobile AI, and AI Automation roles
 
 ---
 
-## 🚀 Featured Project: Voxly AI
-**Voxly** is a voice-powered AI keyboard for Android that provides real-time transcription and seamless text input.
-- **Mobile Core**: Developed a custom Android Input Method Service (IME) using **Kotlin** and **Jetpack Compose**.
-- **AI Integration**: Implemented a real-time audio pipeline that records voice data and processes it via a hosted AI backend on **Hugging Face Spaces**.
-- **Cloud Infrastructure**: Integrated **Firebase Auth** and Google Identity Services for secure user personalization.
+## 🚀 Featured Project: Voxly AI Voice Keyboard
+
+**Voxly** is an intelligent voice-powered AI keyboard for Android that lets you **speak naturally** and get real-time transcription + translation, powered by your **own cloned voice**.
+
+### Key Features
+- **Voice Typing with Translation**: Speak in any supported language → instant transcription + translation to English (or target language) directly into any app.
+- **Personal Voice Cloning**: Clone your voice using ElevenLabs and hear your messages spoken back in **your own voice**.
+- **Multilingual TTS**: Generate natural, casual spoken audio in 20+ languages (including colloquial Tamil, Hinglish-style Hindi, etc.).
+- **Send Voice Messages**: Directly send the cloned voice audio into chats (WhatsApp, Telegram, etc.) or via share sheet.
+- **Credit System**: Freemium model with Firebase Auth and usage-based credits.
+
+### Tech Stack
+
+**Mobile (Android)**
+- Custom **InputMethodService (IME)** in Kotlin
+- Real-time audio recording with MediaRecorder
+- Firebase Authentication (ID Token)
+- OkHttp + Coroutines for backend communication
+- Rich content insertion (`InputContentInfoCompat`)
+
+**Backend (FastAPI)**
+- **Gemini (Google)** for speech-to-text and natural language translation
+- **ElevenLabs** for high-quality voice cloning and turbo TTS (`eleven_turbo_v2_5`)
+- Firebase Admin SDK + Firestore (user credits & profiles)
+- Credit deduction system (1 credit for translation, 3 for voice generation)
+- Voice profile management (upload samples → clone → reuse)
+
+**Supported Languages** (Transcription + Natural TTS)
+English, Chinese, Japanese, Korean, German, French, Russian, Spanish, Portuguese, Italian, Hindi, Arabic, Tamil, and many more.
+
+**Live Backend**: `https://api.sarunsaji.com`
 
 ---
 
 ## 🧠 Featured Project: Personal RAG System
+
 A fully self-hosted Retrieval-Augmented Generation (RAG) system running on a Hetzner VPS.
 
 **Live at**: https://rag.sarunsaji.com
 
-- **Document Intelligence**: Upload PDFs, text, and links into named collections and query them instantly via a clean Streamlit UI or terminal.
-- **Local LLM Integration**: Combines ChromaDB vector search with a local **Qwen 7B** model via **Ollama** for fully private, offline-capable AI.
-- **Production Infrastructure**: FastAPI backend + Streamlit frontend, secured with Nginx reverse proxy and Let's Encrypt SSL.
-- **Terminal Access**: Query your knowledge base from anywhere via simple shell aliases.
+- Upload PDFs, text, and links into named collections
+- Query via clean Streamlit UI or terminal
+- Fully private local LLM (**Qwen 7B** via Ollama) + ChromaDB
+- Nginx + Let's Encrypt SSL
 
 ### Architecture
-```
+
 Browser / Terminal
-        │
-        ▼
+│
+▼
 rag.sarunsaji.com (Nginx + SSL)
-        │
-        ▼
+│
+▼
 Streamlit Frontend
-        │
-        ▼
-FastAPI RAG Backend
-        │
-        ▼
-ChromaDB Vector Store
-```
+│
+▼
+FastAPI Backend
+│
+▼
+ChromaDB Vector Store + Ollama (Qwen 7B)
+
 
 ### Stack
-| Layer | Tech |
-|---|---|
-| Frontend | Streamlit |
-| Backend | FastAPI + LangChain |
-| Vector DB | ChromaDB |
-| LLM | Qwen 7B via Ollama |
-| Proxy | Nginx + Let's Encrypt |
-| Server | Hetzner VPS (Ubuntu) |
+| Layer       | Technology                          |
+|-------------|-------------------------------------|
+| Frontend    | Streamlit                           |
+| Backend     | FastAPI + LangChain                 |
+| Vector DB   | ChromaDB                            |
+| LLM         | Qwen 7B via Ollama                  |
+| Proxy       | Nginx + Let's Encrypt               |
+| Server      | Hetzner VPS (Ubuntu)                |
 
 ---
 
 ## About Me
-I am a developer focused on bridging the gap between **mobile interfaces and powerful backend AI**. I design systems that handle complex operational workflows, from server-side logic to user-facing mobile tools.
 
-My work focuses on:
-- **AI-Driven Mobile Tools**: Creating specialized Android applications that leverage LLMs and transcription models.
-- **Clean Backend Architecture**: Designing stable server-side systems using Python and Django.
-- **Workflow Automation**: Building n8n pipelines to replace manual operational tasks.
-- **Self-Hosted AI Systems**: Building private, production-grade RAG pipelines with local LLMs.
+I love building systems that bridge **mobile interfaces** with **powerful AI backends**. My focus is on creating delightful, intelligent user experiences powered by modern LLMs, voice AI, and clean architecture.
+
+Core interests:
+- AI-powered mobile tools (especially Android)
+- Natural voice interfaces and voice cloning
+- Self-hosted & private AI systems
+- Clean, scalable backend architecture
+- Workflow automation
 
 ---
 
 ## Technical Skills
 
 ### Mobile & AI
-- **Kotlin** & Android SDK
-- **Jetpack Compose** (Modern UI)
-- **AI Integration**: Hugging Face API, Real-time transcription
+- **Kotlin** + Android SDK (Custom IME development)
+- AI Integration: Gemini, ElevenLabs, real-time audio pipelines
+- Firebase Authentication
 
 ### Backend & Languages
-- **Python** & **Django**, **FastAPI**
-- **JavaScript** (integrations)
-- **PostgreSQL**, MySQL, & Django ORM
+- **Python** — FastAPI, Django
+- JavaScript (integrations)
+- PostgreSQL, MySQL, Firestore
 
 ### AI & ML
-- **LangChain**, **ChromaDB**, **Ollama**
-- **RAG pipelines**, vector search, local LLM deployment
-- **sentence-transformers**, embeddings
+- Google Gemini (multimodal)
+- ElevenLabs Voice Cloning & TTS
+- LangChain, ChromaDB, Ollama
+- RAG pipelines, embeddings, local LLMs
 
 ### Automation & DevOps
-- **n8n** (Automated reporting, backup systems, & recovery protocols)
-- **Docker** & Linux
-- **Deployment**: Nginx, Gunicorn, AWS (EC2, S3), & RunPod (GPU Fine-tuning)
-- **Git & GitHub**
+- n8n (automation workflows)
+- Docker, Linux, Nginx
+- Deployment: Hetzner, AWS (EC2, S3), Gunicorn
+- Git & GitHub
 
 ---
 
 ## Projects
-- **Voxly Android AI Keyboard**: Real-time voice-to-text transcription engine.
-- **Personal RAG System**: Self-hosted document intelligence with local LLM — https://rag.sarunsaji.com
-- **Aalborg Wind/Price Data Pipeline**: n8n-driven real-time data ingestion to Hugging Face Spaces.
-- **Driver & Fleet Management Systems**: Django-based operational dashboards.
-- **n8n Recovery & Backup Systems**: Automated protocols for database and infrastructure reliability.
+
+- **Voxly AI Voice Keyboard** — Voice-to-text + personal voice cloning keyboard (Kotlin + FastAPI + Gemini + ElevenLabs)
+- **Personal RAG System** — Fully self-hosted document Q&A with local LLM — [rag.sarunsaji.com](https://rag.sarunsaji.com)
+- **Aalborg Wind/Price Data Pipeline** — Real-time data ingestion and automation
+- **Driver & Fleet Management Systems** — Django-based operational dashboards
+- **n8n Recovery & Backup Systems** — Automated infrastructure reliability protocols
 
 ---
 
 ## Career Focus
-I am actively seeking opportunities as a:
-- **Backend Developer (Python / Django)**
-- **Mobile AI Developer (Android / Kotlin)**
+
+Actively seeking opportunities as:
+
+- **Backend Developer** (Python / FastAPI / Django)
+- **Mobile AI Developer** (Android / Kotlin + AI)
+- **AI Systems Engineer** (Voice AI, RAG, LLM applications)
 - **Automation & Operations Engineer**
-- **AI Systems Developer (RAG, LLM, local AI)**
 
 ---
 
 ## Contact
-📧 Personal: sarunsaji31@gmail.com
-📧 Work: info@sarunsaji.com
-🌐 Portfolio: https://www.sarunsaji.com
-🔗 LinkedIn:https://www.linkedin.com/in/sarun-saji-523b54169/
+
+📧 Personal: sarunsaji31@gmail.com  
+📧 Work: info@sarunsaji.com  
+🌐 Portfolio: https://www.sarunsaji.com  
+🔗 LinkedIn: https://www.linkedin.com/in/sarun-saji-523b54169
