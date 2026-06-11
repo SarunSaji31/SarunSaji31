@@ -47,13 +47,13 @@ English, Chinese, Japanese, Korean, German, French, Russian, Spanish, Portuguese
 
 ## 🧠 Featured Project: Personal RAG System
 
-A fully self-hosted Retrieval-Augmented Generation (RAG) system running on a Hetzner VPS.
+A self-hosted Retrieval-Augmented Generation (RAG) system running on a Hetzner VPS.
 
 **Live at**: https://rag.sarunsaji.com
 
 - Upload PDFs, text, and links into named collections
 - Query via clean Streamlit UI or terminal
-- Fully private local LLM (**Qwen 7B** via Ollama) + ChromaDB
+- **Gemini 2.5 Flash** for grounded answers, **Gemini embeddings** + ChromaDB for retrieval
 - Nginx + Let's Encrypt SSL
 
 ### Architecture
@@ -71,16 +71,16 @@ Streamlit Frontend
 FastAPI Backend
 │
 ▼
-ChromaDB Vector Store + Ollama (Qwen 7B)
+ChromaDB Vector Store + Gemini (embeddings + 2.5 Flash)
 ```
 
 ### Stack
 | Layer       | Technology                          |
 |-------------|-------------------------------------|
 | Frontend    | Streamlit                           |
-| Backend     | FastAPI + LangChain                 |
+| Backend     | FastAPI                             |
 | Vector DB   | ChromaDB                            |
-| LLM         | Qwen 7B via Ollama                  |
+| LLM         | Gemini 2.5 Flash + gemini-embedding-001 |
 | Proxy       | Nginx + Let's Encrypt               |
 | Server      | Hetzner VPS (Ubuntu)                |
 
@@ -169,7 +169,8 @@ Core interests:
 ## Projects
 
 - **Voxly AI Voice Keyboard** — Voice-to-text + personal voice cloning keyboard (Kotlin + FastAPI + Gemini + ElevenLabs)
-- **Personal RAG System** — Fully self-hosted document Q&A with local LLM — [rag.sarunsaji.com](https://rag.sarunsaji.com)
+- **Personal RAG System** — Self-hosted document Q&A (Gemini + ChromaDB) — [rag.sarunsaji.com](https://rag.sarunsaji.com)
+- **Portfolio Site** — Django 6 site with CI, Docker, strict CSP, and self-hosted analytics — [sarunsaji.com](https://www.sarunsaji.com)
 - **EKSTM** — Django-based Staff Transport Management System for Emirates (duty cards, OTP analytics, fleet tracking, Google Drive document profiles)
 - **[Cabin Crew Trips Automation](https://github.com/SarunSaji31/cabincrew_trips_automation)** — Django + Pandas system that turns raw inbound/outbound crew Excel files into grouped, rule-based trip reports
 - **[UniFi Captive Portal](https://github.com/SarunSaji31/unifi-captive-portal)** — Dockerized Flask + MySQL guest-WiFi portal that captures emails and authorizes devices via the UniFi controller API
