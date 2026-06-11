@@ -26,9 +26,9 @@ Backend Developer specializing in Python, Django, FastAPI, and Android Kotlin. P
 ```mermaid
 flowchart TD
     A["🎙 Speak into Voxly Keyboard (Android IME)"] --> B["FastAPI Backend<br/>api.sarunsaji.com"]
-    B --> C["Gemini<br/>Speech-to-Text + Translation"]
+    B --> C["Multimodal LLM<br/>Speech-to-Text + Translation"]
     C --> D["Text typed directly into the focused app"]
-    D -- "tap 🔊 (optional)" --> E["ElevenLabs<br/>Cloned-Voice TTS"]
+    D -- "tap 🔊 (optional)" --> E["Neural TTS Engine<br/>Cloned-Voice Synthesis"]
     E --> F["MP3 — auto-plays, shareable to WhatsApp / Telegram"]
     B <--> G["Firebase Auth + Firestore<br/>(sessions & credits)"]
 ```
@@ -75,7 +75,7 @@ flowchart TD
     A["Browser / Terminal"] --> B["rag.sarunsaji.com (Nginx + SSL)"]
     B --> C["Streamlit Frontend"]
     C --> D["FastAPI Backend"]
-    D --> E["ChromaDB Vector Store + Gemini<br/>(embeddings + 2.5 Flash)"]
+    D --> E["ChromaDB Vector Store + LLM<br/>(embeddings + generation)"]
 ```
 
 ### Stack
