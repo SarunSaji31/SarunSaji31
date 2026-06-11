@@ -21,6 +21,18 @@ Backend Developer specializing in Python, Django, FastAPI, and Android Kotlin. P
 - **Credit System**: Freemium model with Firebase Auth — 50 free credits on signup, atomic deductions, charged only on successful results.
 - **In-App Updates**: Google Play flexible update flow prompts users when a new version ships.
 
+### Architecture
+
+```mermaid
+flowchart TD
+    A["🎙 Speak into Voxly Keyboard (Android IME)"] --> B["FastAPI Backend<br/>api.sarunsaji.com"]
+    B --> C["Gemini<br/>Speech-to-Text + Translation"]
+    C --> D["Text typed directly into the focused app"]
+    D -- "tap 🔊 (optional)" --> E["ElevenLabs<br/>Cloned-Voice TTS"]
+    E --> F["MP3 — auto-plays, shareable to WhatsApp / Telegram"]
+    B <--> G["Firebase Auth + Firestore<br/>(sessions & credits)"]
+```
+
 ### Tech Stack
 
 **Mobile (Android)**
