@@ -13,25 +13,30 @@ Backend Developer specializing in Python, Django, FastAPI, and Android Kotlin. P
 ### Key Features
 - **Voice Typing with Translation**: Speak in any supported language → instant transcription + translation to English (or target language) directly into any app.
 - **Personal Voice Cloning**: Clone your voice using ElevenLabs and hear your messages spoken back in **your own voice**.
+- **Per-Voice Tuning**: Adjust speed, stability, similarity, and style for each cloned voice — every voice keeps its own settings.
 - **Multilingual TTS**: Generate natural, casual spoken audio in 20+ languages (including colloquial Tamil, Hinglish-style Hindi, etc.).
-- **Send Voice Messages**: Directly send the cloned voice audio into chats (WhatsApp, Telegram, etc.) or via share sheet.
-- **Credit System**: Freemium model with Firebase Auth and usage-based credits.
+- **Send Voice Messages**: Share cloned-voice audio to WhatsApp, Telegram, or any app via the system share sheet.
+- **Custom Keyboard Engine**: Canvas-rendered QWERTY/symbols keyboard with word predictions, autocorrect, emoji panel, and TalkBack accessibility.
+- **Transcription Styles**: One-tap toggle between faithful English output and casual Gen Z texting style.
+- **Credit System**: Freemium model with Firebase Auth — 50 free credits on signup, atomic deductions, charged only on successful results.
+- **In-App Updates**: Google Play flexible update flow prompts users when a new version ships.
 
 ### Tech Stack
 
 **Mobile (Android)**
 - Custom **InputMethodService (IME)** in Kotlin
-- Real-time audio recording with MediaRecorder
+- Custom canvas keyboard view with prediction + autocorrect over a 40k-word dictionary
+- Jetpack Compose (Material 3) + XML Views
+- Real-time audio recording with MediaRecorder + layered silence detection (no wasted API calls or credits)
 - Firebase Authentication (ID Token)
 - OkHttp + Coroutines for backend communication
-- Rich content insertion (`InputContentInfoCompat`)
 
 **Backend (FastAPI)**
 - **Gemini (Google)** for speech-to-text and natural language translation
-- **ElevenLabs** for high-quality voice cloning and turbo TTS (`eleven_turbo_v2_5`)
+- **ElevenLabs** for high-quality voice cloning and turbo TTS
 - Firebase Admin SDK + Firestore (user credits & profiles)
-- Credit deduction system (1 credit for translation, 3 for voice generation)
-- Voice profile management (upload samples → clone → reuse)
+- Credit deduction system (1 credit for translation, 3 for voice generation) — atomic Firestore transactions, charged only on success
+- Voice profile management (upload samples → clone → tune → reuse, with slot-safe deletion)
 
 **Supported Languages** (Transcription + Natural TTS)
 English, Chinese, Japanese, Korean, German, French, Russian, Spanish, Portuguese, Italian, Hindi, Arabic, Tamil, and many more.
@@ -142,7 +147,8 @@ Core interests:
 - Firebase Authentication
 
 ### Backend & Languages
-- **Python** — FastAPI, Django
+- **Python** — FastAPI, Django, Flask
+- Pandas (Excel/data processing pipelines)
 - JavaScript (integrations)
 - PostgreSQL, MySQL, Firestore
 
@@ -165,6 +171,8 @@ Core interests:
 - **Voxly AI Voice Keyboard** — Voice-to-text + personal voice cloning keyboard (Kotlin + FastAPI + Gemini + ElevenLabs)
 - **Personal RAG System** — Fully self-hosted document Q&A with local LLM — [rag.sarunsaji.com](https://rag.sarunsaji.com)
 - **EKSTM** — Django-based Staff Transport Management System for Emirates (duty cards, OTP analytics, fleet tracking, Google Drive document profiles)
+- **[Cabin Crew Trips Automation](https://github.com/SarunSaji31/cabincrew_trips_automation)** — Django + Pandas system that turns raw inbound/outbound crew Excel files into grouped, rule-based trip reports
+- **[UniFi Captive Portal](https://github.com/SarunSaji31/unifi-captive-portal)** — Dockerized Flask + MySQL guest-WiFi portal that captures emails and authorizes devices via the UniFi controller API
 - **Aalborg Wind/Price Data Pipeline** — Real-time data ingestion and automation
 - **n8n Recovery & Backup Systems** — Automated infrastructure reliability protocols
 
