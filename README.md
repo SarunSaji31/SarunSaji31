@@ -58,20 +58,12 @@ A self-hosted Retrieval-Augmented Generation (RAG) system running on a Hetzner V
 
 ### Architecture
 
-```
-Browser / Terminal
-│
-▼
-rag.sarunsaji.com (Nginx + SSL)
-│
-▼
-Streamlit Frontend
-│
-▼
-FastAPI Backend
-│
-▼
-ChromaDB Vector Store + Gemini (embeddings + 2.5 Flash)
+```mermaid
+flowchart TD
+    A["Browser / Terminal"] --> B["rag.sarunsaji.com (Nginx + SSL)"]
+    B --> C["Streamlit Frontend"]
+    C --> D["FastAPI Backend"]
+    D --> E["ChromaDB Vector Store + Gemini<br/>(embeddings + 2.5 Flash)"]
 ```
 
 ### Stack
