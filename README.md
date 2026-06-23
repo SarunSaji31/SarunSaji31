@@ -1,6 +1,6 @@
 # Hi, I'm Sarun Saji 👋
 
-Backend Developer specializing in Python, Django, FastAPI, and Android Kotlin. Passionate about building AI-integrated mobile experiences and production-grade backend systems.
+Software Developer — Backend & AI specializing in Python, Django, FastAPI, and Android Kotlin. Passionate about building AI-integrated mobile experiences and production-grade backend systems.
 
 📍 Aalborg, Denmark | Open to Backend, Mobile AI, and AI Automation roles
 
