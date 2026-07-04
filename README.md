@@ -179,7 +179,7 @@ Core interests:
 - **EKSTM** — Django-based Staff Transport Management System for Emirates (duty cards, OTP analytics, fleet tracking, Google Drive document profiles)
 - **[Cabin Crew Trips Automation](https://github.com/SarunSaji31/cabincrew_trips_automation)** — Django + Pandas system that turns raw inbound/outbound crew Excel files into grouped, rule-based trip reports
 - **[UniFi Captive Portal](https://github.com/SarunSaji31/unifi-captive-portal)** — Dockerized Flask + MySQL guest-WiFi portal that captures emails and authorizes devices via the UniFi controller API
-- **Aalborg Wind/Price Data Pipeline** — Real-time data ingestion and automation
+- **[Aalborg DK1 Energy Dashboard](https://dash.sarunsaji.com)** — End-to-end energy-market data platform for Denmark's DK1 zone: a scheduled **n8n** pipeline ingests day-ahead electricity prices and wind forecasts from Energinet's official API into **PostgreSQL**, surfaced through a live **Plotly Dash** dashboard and automated **Telegram** briefings — containerised (Docker) and continuously deployed via **GitHub Actions CI/CD** — [dash.sarunsaji.com](https://dash.sarunsaji.com)
 - **n8n Recovery & Backup Systems** — Automated infrastructure reliability protocols
 
 ---
