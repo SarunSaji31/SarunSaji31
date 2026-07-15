@@ -6,6 +6,43 @@ Software Developer — Backend & AI specializing in Python, Django, FastAPI, and
 
 ---
 
+## ⚡ Featured Project: Danish Power Data Pipeline
+
+A **production data platform for the Danish electricity market** — every night it ingests day-ahead prices, wind & solar forecasts, CO₂ intensity, and household consumption for all of Denmark, and serves them as a live analytics dashboard and an automated daily Telegram briefing. **31.8 million rows spanning 5+ years**, running 24/7 and redeploying itself on every push to `main`.
+
+**Live Dashboard**: [etl.sarunsaji.com](https://etl.sarunsaji.com) | **Code**: [danish-power-data-pipeline](https://github.com/SarunSaji31/danish-power-data-pipeline)
+
+### Engineering Highlights
+- **Orchestration (Dagster)**: 4 monthly-partitioned assets with nightly self-healing re-materialization; the initial 5-year backfill ran as 85 resumable, state-tracked jobs that survived mid-run network failures
+- **Defensive ingestion**: batched windowed fetches against an aggressively rate-limited public API with automatic HTTP 429/network retry; transparently merges the hourly and 15-minute market eras across the October 2025 Nordic settlement switch
+- **Idempotent by design**: every row lands via batched upserts (`INSERT … ON CONFLICT DO UPDATE`) — any partition can be safely re-run; recovery from any failure is "run it again"
+- **Time-series storage (TimescaleDB)**: hypertables with columnar compression (**6 GB → 563 MB, 10.7×**) and continuous aggregates that cut the heaviest dashboard query from **2,195 ms to 19 ms (116×)**
+- **Serving**: Plotly Dash dashboard — KPI tiles, a choropleth map of all 98 Danish municipalities, price heatmaps, market-insight charts — reading only pre-computed aggregates through a **least-privilege read-only DB role**
+- **CI/CD (GitHub Actions)**: every push runs the test suite, then SSH-deploys both the pipeline daemon and the dashboard container — zero manual steps
+
+### Architecture
+
+```mermaid
+flowchart TD
+    A["energidataservice.dk<br/>(open energy-market API, 5 datasets)"] --> B["Dagster ETL<br/>4 partitioned assets · nightly schedule · idempotent upserts"]
+    B --> C["TimescaleDB<br/>hypertables · 10.7x compression · continuous aggregates"]
+    C --> D["Plotly Dash dashboard<br/>etl.sarunsaji.com (read-only DB role)"]
+    C --> E["Telegram daily briefing<br/>tomorrow's prices + cheapest 3-hour window"]
+    F["GitHub Actions CI/CD"] -- "push to main → test → auto-deploy" --> B
+```
+
+### Stack
+| Layer | Technology |
+|-------------|-------------------------------------|
+| Orchestration | Dagster (partitioned assets, schedules, backfills) |
+| Database | TimescaleDB (PostgreSQL) — hypertables, compression, continuous aggregates |
+| Dashboard | Plotly Dash + Gunicorn |
+| Notifications | Telegram Bot API |
+| CI/CD | GitHub Actions (test → SSH deploy) |
+| Infrastructure | Docker, Nginx + Let's Encrypt, self-managed VPS |
+
+---
+
 ## 🚀 Featured Project: Voxly AI Voice Keyboard
 
 **Voxly** is an intelligent voice-powered AI keyboard for Android that lets you **speak naturally** and get real-time transcription + translation, powered by your **own cloned voice**.
@@ -59,7 +96,7 @@ English, Chinese, Japanese, Korean, German, French, Russian, Spanish, Portuguese
 
 ## 🧠 Featured Project: Personal RAG System
 
-A self-hosted Retrieval-Augmented Generation (RAG) system running on a Hetzner VPS.
+A self-hosted Retrieval-Augmented Generation (RAG) system running on a self-managed VPS.
 
 **Live at**: https://rag.sarunsaji.com
 
@@ -86,7 +123,7 @@ flowchart TD
 | Vector DB   | ChromaDB                            |
 | LLM         | Gemini 2.5 Flash + gemini-embedding-001 |
 | Proxy       | Nginx + Let's Encrypt               |
-| Server      | Hetzner VPS (Ubuntu)                |
+| Server      | Self-managed VPS (Ubuntu)           |
 
 ---
 
@@ -154,7 +191,7 @@ Core interests:
 - **Python** — FastAPI, Django, Flask
 - Pandas (Excel/data processing pipelines)
 - JavaScript (integrations)
-- PostgreSQL, MySQL, Firestore
+- PostgreSQL, TimescaleDB, MySQL, Firestore
 
 ### AI & ML
 - Google Gemini (multimodal)
@@ -162,10 +199,15 @@ Core interests:
 - LangChain, ChromaDB, Ollama
 - RAG pipelines, embeddings, local LLMs
 
+### Data Engineering
+- **Dagster** (partitioned assets, schedules, resumable backfills)
+- **TimescaleDB** (hypertables, columnar compression, continuous aggregates)
+- ETL design: idempotent upserts, rate-limit-aware ingestion, UTC-first time handling
+
 ### Automation & DevOps
 - n8n (automation workflows)
 - Docker, Linux, Nginx
-- Deployment: Hetzner, AWS (EC2, S3), Gunicorn
+- Deployment: self-managed VPS, AWS (EC2, S3), Gunicorn
 - **CI/CD**: GitHub Actions pipelines — automated test → Docker build → SSH deploy on push to `main` (actions pinned to commit SHAs for supply-chain safety)
 - Git & GitHub
 
@@ -173,12 +215,12 @@ Core interests:
 
 ## Projects
 
+- **[Danish Power Data Pipeline](https://github.com/SarunSaji31/danish-power-data-pipeline)** — Production energy-market ETL: Dagster + TimescaleDB ingesting 31.8M rows of Danish electricity data, live Plotly Dash analytics + daily Telegram briefing, full CI/CD — [etl.sarunsaji.com](https://etl.sarunsaji.com)
 - **Voxly AI Voice Keyboard** — Voice-to-text + personal voice cloning keyboard (Kotlin + FastAPI + Gemini + ElevenLabs)
 - **Personal RAG System** — Self-hosted document Q&A (Gemini + ChromaDB) — [rag.sarunsaji.com](https://rag.sarunsaji.com)
 - **Portfolio Site** — Django 6 site with a full **CI/CD pipeline** (GitHub Actions: test → auto-deploy), Docker, strict CSP, and self-hosted analytics — [sarunsaji.com](https://www.sarunsaji.com)
 - **EKSTM** — Django-based Staff Transport Management System for Emirates (duty cards, OTP analytics, fleet tracking, Google Drive document profiles)
 - **[Cabin Crew Trips Automation](https://github.com/SarunSaji31/cabincrew_trips_automation)** — Django + Pandas system that turns raw inbound/outbound crew Excel files into grouped, rule-based trip reports
-- **[UniFi Captive Portal](https://github.com/SarunSaji31/unifi-captive-portal)** — Dockerized Flask + MySQL guest-WiFi portal that captures emails and authorizes devices via the UniFi controller API
 - **[Aalborg DK1 Energy Dashboard](https://dash.sarunsaji.com)** — End-to-end energy-market data platform for Denmark's DK1 zone: a scheduled **n8n** pipeline ingests day-ahead electricity prices and wind forecasts from Energinet's official API into **PostgreSQL**, surfaced through a live **Plotly Dash** dashboard and automated **Telegram** briefings — containerised (Docker) and continuously deployed via **GitHub Actions CI/CD** — [dash.sarunsaji.com](https://dash.sarunsaji.com)
 - **n8n Recovery & Backup Systems** — Automated infrastructure reliability protocols
 
@@ -189,6 +231,7 @@ Core interests:
 Actively seeking opportunities as:
 
 - **Backend Developer** (Python / FastAPI / Django)
+- **Data Engineer** (Python / Dagster / TimescaleDB / SQL)
 - **Mobile AI Developer** (Android / Kotlin + AI)
 - **AI Systems Engineer** (Voice AI, RAG, LLM applications)
 - **Automation & Operations Engineer**
