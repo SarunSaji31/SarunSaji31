@@ -8,12 +8,13 @@ Software Developer — Backend & AI specializing in Python, Django, FastAPI, and
 
 ## ⚡ Featured Project: Danish Power Data Pipeline
 
-A **production data platform for the Danish electricity market** — every night it ingests day-ahead prices, wind & solar forecasts, CO₂ intensity, and household consumption for all of Denmark, and serves them as a live analytics dashboard and an automated daily Telegram briefing. **31.8 million rows spanning 5+ years**, running 24/7 and redeploying itself on every push to `main`.
+A **production data platform for the Danish electricity market** — every night it ingests day-ahead prices, wind & solar forecasts, CO₂ intensity, and household consumption for all of Denmark, and serves them as a live analytics dashboard and an automated daily Telegram briefing. Every morning a **machine-learning model predicts the next day's 24 hourly electricity prices before the market auction closes**, and its accuracy is scored publicly on the dashboard as the official prices land. **31.8 million rows spanning 5+ years**, running 24/7 and redeploying itself on every push to `main`.
 
 **Live Dashboard**: [etl.sarunsaji.com](https://etl.sarunsaji.com) | **Code**: [danish-power-data-pipeline](https://github.com/SarunSaji31/danish-power-data-pipeline)
 
 ### Engineering Highlights
-- **Orchestration (Dagster)**: 4 monthly-partitioned assets with nightly self-healing re-materialization; the initial 5-year backfill ran as 85 resumable, state-tracked jobs that survived mid-run network failures
+- **Orchestration (Dagster)**: 8 assets across 3 data providers (energy market, weather, gas) with nightly self-healing re-materialization; the initial 5-year backfill ran as 85 resumable, state-tracked jobs that survived mid-run network failures
+- **ML price forecasting (LightGBM)**: predicts tomorrow's 24 hourly DK1 prices each morning **before the 12:00 day-ahead auction** — features are leak-free by construction (price lags, point-in-time weather forecasts, previous gas settlement; the grid operator's own forecast publishes too late and is deliberately excluded). Walk-forward backtest over 24 months: **MAE 0.19 DKK/kWh vs 0.29 for a naive forecast (−32%)**; predictions are stored as immutable receipts keyed to git-versioned model files and scored live on the dashboard
 - **Defensive ingestion**: batched windowed fetches against an aggressively rate-limited public API with automatic HTTP 429/network retry; transparently merges the hourly and 15-minute market eras across the October 2025 Nordic settlement switch
 - **Idempotent by design**: every row lands via batched upserts (`INSERT … ON CONFLICT DO UPDATE`) — any partition can be safely re-run; recovery from any failure is "run it again"
 - **Time-series storage (TimescaleDB)**: hypertables with columnar compression (**6 GB → 563 MB, 10.7×**) and continuous aggregates that cut the heaviest dashboard query from **2,195 ms to 19 ms (116×)**
@@ -24,8 +25,11 @@ A **production data platform for the Danish electricity market** — every night
 
 ```mermaid
 flowchart TD
-    A["energidataservice.dk<br/>(open energy-market API, 5 datasets)"] --> B["Dagster ETL<br/>4 partitioned assets · nightly schedule · idempotent upserts"]
+    A["energidataservice.dk<br/>(open energy-market API, 5 datasets)"] --> B["Dagster ETL<br/>8 assets · nightly + morning schedules · idempotent upserts"]
+    A2["Open-Meteo weather +<br/>TTF gas settlements"] --> B
     B --> C["TimescaleDB<br/>hypertables · 10.7x compression · continuous aggregates"]
+    C --> M["LightGBM price forecast<br/>tomorrow's 24 hourly prices, pre-auction"]
+    M --> C
     C --> D["Plotly Dash dashboard<br/>etl.sarunsaji.com (read-only DB role)"]
     C --> E["Telegram daily briefing<br/>tomorrow's prices + cheapest 3-hour window"]
     F["GitHub Actions CI/CD"] -- "push to main → test → auto-deploy" --> B
@@ -36,6 +40,7 @@ flowchart TD
 |-------------|-------------------------------------|
 | Orchestration | Dagster (partitioned assets, schedules, backfills) |
 | Database | TimescaleDB (PostgreSQL) — hypertables, compression, continuous aggregates |
+| Machine Learning | LightGBM — leak-free features, walk-forward backtesting, git-versioned models |
 | Dashboard | Plotly Dash + Gunicorn |
 | Notifications | Telegram Bot API |
 | CI/CD | GitHub Actions (test → SSH deploy) |
