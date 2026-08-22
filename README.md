@@ -6,6 +6,54 @@ Software Developer — Backend & AI specializing in Python, Django, FastAPI, and
 
 ---
 
+## 🚀 Featured Project: Voxly AI Keyboard — live on Google Play
+
+**Voxly** is a keyboard you can talk to. Hold the mic, say what you mean, and it types it into whatever app you are already in — WhatsApp, Gmail, Instagram, anything. Speak one language and send another, across **22 languages**, twelve of which get a full keyboard in their own script.
+
+Built end to end by one developer and shipped as a commercial product with in-app purchases.
+
+📲 **[Get it on Google Play](https://play.google.com/store/apps/details?id=com.ss.voxly)** · 🌐 [voxlykeys.com](https://voxlykeys.com)
+
+### Key Features
+- **Speak one language, send another**: say it in Malayalam and send it in Danish, or Hindi in and English out. Voxly writes in the language you picked, straight into the focused field.
+- **Twelve keyboards in their own script**: Malayalam, Tamil, Hindi, Marathi, Nepali, Bengali, Punjabi, Gujarati, Telugu, Kannada, Arabic and Urdu — every letter on the board, in alphabet order. Danish, Norwegian, Swedish, German and French get their real layouts rather than a long-press menu.
+- **A check before you send**: when the output is a language the user cannot read, Voxly shows them what it says in English first.
+- **A full keyboard, not a voice add-on**: swipe typing, suggestions that learn the words you actually use, transliteration from Latin letters into script, emoji, GIF search, themes with a live preview, and TalkBack accessibility throughout.
+- **Typing is free**: every keyboard, swipe, emoji and GIF costs nothing — only a voice message spends a credit.
+- **Purchases that cannot be forged**: the client never grants its own credits. Entitlement is decided server-side and every Play purchase is verified with Google before it is honoured.
+- **Privacy as a constraint**: voice recordings are deleted as soon as the text is ready and are never stored; the text Voxly produces is never logged.
+- **In-App Updates**: Google Play flexible update flow ships new versions without the user leaving the keyboard.
+
+### Architecture
+
+```mermaid
+flowchart LR
+    A["Voxly Keyboard<br/>(Android custom IME)"] --> B["Backend service<br/>(Docker, self-managed VPS)"]
+    B --> C["Speech + language layer"]
+    C --> D["Text typed into the focused app"]
+    B <--> E["Managed auth +<br/>server-side usage metering"]
+    F["Google Play Billing"] --> B
+```
+
+### Tech Stack
+
+**Mobile (Android)**
+- Custom **InputMethodService (IME)** in Kotlin — rendering, touch pipeline, long-press popups and accessibility all written from scratch, because Android's keyboard framework has been deprecated for years
+- Jetpack Compose (Material 3) + XML Views
+- Real-time audio capture, fully asynchronous — a keyboard can never crash, block the UI thread, or lose the input connection
+- Firebase Authentication (ID token)
+- OkHttp + Coroutines
+- Google Play Billing + in-app updates
+
+**Backend**
+- **FastAPI** in Docker, behind Nginx with Let's Encrypt TLS on a self-managed VPS
+- Firebase Admin SDK + Firestore for identity and balances
+- Server-side usage metering, and purchase verification against the Google Play Developer API
+
+> **A note on detail.** Voxly is a live commercial product, so this section stops at the level above. The model and prompt design, the anti-abuse and entitlement layers, and the transliteration, prediction and swipe-decoding engines are not published. I am glad to go into depth on any of it in conversation.
+
+---
+
 ## ⚡ Featured Project: Danish Power Data Pipeline
 
 A **production data platform for the Danish electricity market** — every night it ingests day-ahead prices, wind & solar forecasts, CO₂ intensity, and household consumption for all of Denmark, and serves them as a live analytics dashboard and an automated daily Telegram briefing. Every morning a **machine-learning model predicts the next day's 24 hourly electricity prices before the market auction closes**, and its accuracy is scored publicly on the dashboard as the official prices land. **31.8 million rows spanning 5+ years**, running 24/7 and redeploying itself on every push to `main`.
@@ -45,57 +93,6 @@ flowchart TD
 | Notifications | Telegram Bot API |
 | CI/CD | GitHub Actions (test → SSH deploy) |
 | Infrastructure | Docker, Nginx + Let's Encrypt, self-managed VPS |
-
----
-
-## 🚀 Featured Project: Voxly AI Voice Keyboard
-
-**Voxly** is an intelligent voice-powered AI keyboard for Android that lets you **speak naturally** and get real-time transcription + translation, powered by your **own cloned voice**.
-
-### Key Features
-- **Voice Typing with Translation**: Speak in any supported language → instant transcription + translation to English (or target language) directly into any app.
-- **Personal Voice Cloning**: Clone your voice using ElevenLabs and hear your messages spoken back in **your own voice**.
-- **Per-Voice Tuning**: Adjust speed, stability, similarity, and style for each cloned voice — every voice keeps its own settings.
-- **Multilingual TTS**: Generate natural, casual spoken audio in 20+ languages (including colloquial Tamil, Hinglish-style Hindi, etc.).
-- **Send Voice Messages**: Share cloned-voice audio to WhatsApp, Telegram, or any app via the system share sheet.
-- **Custom Keyboard Engine**: Canvas-rendered QWERTY/symbols keyboard with word predictions, autocorrect, emoji panel, and TalkBack accessibility.
-- **Transcription Styles**: One-tap toggle between faithful English output and casual Gen Z texting style.
-- **Credit System**: Freemium model with Firebase Auth — 50 free credits on signup, atomic deductions, charged only on successful results.
-- **In-App Updates**: Google Play flexible update flow prompts users when a new version ships.
-
-### Architecture
-
-```mermaid
-flowchart TD
-    A["🎙 Speak into Voxly Keyboard (Android IME)"] --> B["FastAPI Backend<br/>api.sarunsaji.com"]
-    B --> C["Multimodal LLM<br/>Speech-to-Text + Translation"]
-    C --> D["Text typed directly into the focused app"]
-    D -- "tap 🔊 (optional)" --> E["Neural TTS Engine<br/>Cloned-Voice Synthesis"]
-    E --> F["MP3 — auto-plays, shareable to WhatsApp / Telegram"]
-    B <--> G["Firebase Auth + Firestore<br/>(sessions & credits)"]
-```
-
-### Tech Stack
-
-**Mobile (Android)**
-- Custom **InputMethodService (IME)** in Kotlin
-- Custom canvas keyboard view with prediction + autocorrect over a 40k-word dictionary
-- Jetpack Compose (Material 3) + XML Views
-- Real-time audio recording with MediaRecorder + layered silence detection (no wasted API calls or credits)
-- Firebase Authentication (ID Token)
-- OkHttp + Coroutines for backend communication
-
-**Backend (FastAPI)**
-- **Gemini (Google)** for speech-to-text and natural language translation
-- **ElevenLabs** for high-quality voice cloning and turbo TTS
-- Firebase Admin SDK + Firestore (user credits & profiles)
-- Credit deduction system (1 credit for translation, 3 for voice generation) — atomic Firestore transactions, charged only on success
-- Voice profile management (upload samples → clone → tune → reuse, with slot-safe deletion)
-
-**Supported Languages** (Transcription + Natural TTS)
-English, Chinese, Japanese, Korean, German, French, Russian, Spanish, Portuguese, Italian, Hindi, Arabic, Tamil, and many more.
-
-**Live Backend**: `https://api.sarunsaji.com`
 
 ---
 
@@ -178,7 +175,7 @@ I love building systems that bridge **mobile interfaces** with **powerful AI bac
 
 Core interests:
 - AI-powered mobile tools (especially Android)
-- Natural voice interfaces and voice cloning
+- Natural voice interfaces
 - Self-hosted & private AI systems
 - Clean, scalable backend architecture
 - Workflow automation
@@ -189,7 +186,7 @@ Core interests:
 
 ### Mobile & AI
 - **Kotlin** + Android SDK (Custom IME development)
-- AI Integration: Gemini, ElevenLabs, real-time audio pipelines
+- AI integration: multimodal LLMs, real-time audio pipelines
 - Firebase Authentication
 
 ### Backend & Languages
@@ -221,9 +218,9 @@ Core interests:
 ## Projects
 
 - **[Danish Power Data Pipeline](https://github.com/SarunSaji31/danish-power-data-pipeline)** — Production energy-market ETL: Dagster + TimescaleDB ingesting 31.8M rows of Danish electricity data, live Plotly Dash analytics + daily Telegram briefing, full CI/CD — [etl.sarunsaji.com](https://etl.sarunsaji.com)
-- **Voxly AI Voice Keyboard** — Voice-to-text + personal voice cloning keyboard (Kotlin + FastAPI + Gemini + ElevenLabs)
+- **Voxly AI Keyboard** — Voice-powered Android keyboard in 22 languages, live on Google Play (Kotlin custom IME + FastAPI + Play Billing) — [Play Store](https://play.google.com/store/apps/details?id=com.ss.voxly) · [voxlykeys.com](https://voxlykeys.com)
 - **Personal RAG System** — Self-hosted document Q&A (Gemini + ChromaDB) — [rag.sarunsaji.com](https://rag.sarunsaji.com)
-- **Portfolio Site** — Django 6 site with a full **CI/CD pipeline** (GitHub Actions: test → auto-deploy), Docker, strict CSP, and self-hosted analytics — [sarunsaji.com](https://www.sarunsaji.com)
+- **Portfolio Site** — Django 6 site with a full **CI/CD pipeline** (GitHub Actions: test → auto-deploy), Docker, and a strict CSP — [sarunsaji.com](https://www.sarunsaji.com)
 - **EKSTM** — Django-based Staff Transport Management System for Emirates (duty cards, OTP analytics, fleet tracking, Google Drive document profiles)
 - **[Cabin Crew Trips Automation](https://github.com/SarunSaji31/cabincrew_trips_automation)** — Django + Pandas system that turns raw inbound/outbound crew Excel files into grouped, rule-based trip reports
 - **[Aalborg DK1 Energy Dashboard](https://dash.sarunsaji.com)** — End-to-end energy-market data platform for Denmark's DK1 zone: a scheduled **n8n** pipeline ingests day-ahead electricity prices and wind forecasts from Energinet's official API into **PostgreSQL**, surfaced through a live **Plotly Dash** dashboard and automated **Telegram** briefings — containerised (Docker) and continuously deployed via **GitHub Actions CI/CD** — [dash.sarunsaji.com](https://dash.sarunsaji.com)
