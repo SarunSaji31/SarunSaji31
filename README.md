@@ -8,7 +8,7 @@ Software Developer — Backend & AI specializing in Python, Django, FastAPI, and
 
 ## 🚀 Featured Project: Voxly AI Keyboard — live on Google Play
 
-**Voxly** is a keyboard you can talk to. Hold the mic, say what you mean, and it types it into whatever app you are already in — WhatsApp, Gmail, Instagram, anything. Speak one language and send another, across **22 languages**, twelve of which get a full keyboard in their own script.
+**Voxly** is a keyboard you can talk to. Hold the mic, say what you mean, and it types it into whatever app you are already in — WhatsApp, Gmail, Instagram, anything. Speak one language and send another, across **24 languages**, thirteen of which get a full keyboard in their own script.
 
 Built end to end by one developer and shipped as a commercial product with in-app purchases.
 
@@ -16,7 +16,7 @@ Built end to end by one developer and shipped as a commercial product with in-ap
 
 ### Key Features
 - **Speak one language, send another**: say it in Malayalam and send it in Danish, or Hindi in and English out. Voxly writes in the language you picked, straight into the focused field.
-- **Twelve keyboards in their own script**: Malayalam, Tamil, Hindi, Marathi, Nepali, Bengali, Punjabi, Gujarati, Telugu, Kannada, Arabic and Urdu — every letter on the board, in alphabet order. Danish, Norwegian, Swedish, German and French get their real layouts rather than a long-press menu.
+- **Thirteen keyboards in their own script**: Malayalam, Tamil, Hindi, Marathi, Nepali, Bengali, Punjabi, Gujarati, Telugu, Kannada, Arabic and Urdu, with every letter on the board in alphabet order, plus a standard ЙЦУКЕН board for Ukrainian. Danish, Norwegian, Swedish, German and French get their real layouts rather than a long-press menu.
 - **A check before you send**: when the output is a language the user cannot read, Voxly shows them what it says in English first.
 - **A full keyboard, not a voice add-on**: swipe typing, suggestions that learn the words you actually use, transliteration from Latin letters into script, emoji, GIF search, themes with a live preview, and TalkBack accessibility throughout.
 - **Typing is free**: every keyboard, swipe, emoji and GIF costs nothing — only a voice message spends a credit.
