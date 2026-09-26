@@ -18,11 +18,18 @@ Built end to end by one developer and shipped as a commercial product with in-ap
 - **Speak one language, send another**: say it in Malayalam and send it in Danish, or Hindi in and English out. Voxly writes in the language you picked, straight into the focused field.
 - **Thirteen keyboards in their own script**: Malayalam, Tamil, Hindi, Marathi, Nepali, Bengali, Punjabi, Gujarati, Telugu, Kannada, Arabic and Urdu, with every letter on the board in alphabet order, plus a standard ЙЦУКЕН board for Ukrainian. Danish, Norwegian, Swedish, German and French get their real layouts rather than a long-press menu.
 - **A check before you send**: when the output is a language the user cannot read, Voxly shows them what it says in English first.
+- **Work voice or group-chat voice**: plain, direct English by default, or one tap for Gen Z mode, which writes the same message the way people actually text.
 - **A full keyboard, not a voice add-on**: swipe typing, suggestions that learn the words you actually use, transliteration from Latin letters into script, emoji, GIF search, themes with a live preview, and TalkBack accessibility throughout.
 - **Typing is free**: every keyboard, swipe, emoji and GIF costs nothing — only a voice message spends a credit.
 - **Purchases that cannot be forged**: the client never grants its own credits. Entitlement is decided server-side and every Play purchase is verified with Google before it is honoured.
 - **Privacy as a constraint**: voice recordings are deleted as soon as the text is ready and are never stored; the text Voxly produces is never logged.
 - **In-App Updates**: Google Play flexible update flow ships new versions without the user leaving the keyboard.
+
+**In the next update (v23, built and tested, heading to Play)**
+- **Translate what you typed**: write in your own language, even in English letters, tap once, and the paragraph becomes its translation, with Undo. Like a voice message, it costs one credit.
+- **Choose where your words go**: long-press the globe to send in Hinglish, Danish or another language without switching keyboards.
+- **Spelling that finds the real word**: typing Malayalam, Tamil, Hindi, Bengali, Telugu or Urdu in English letters is matched against a real dictionary, not converted letter by letter.
+- **Recent copies**, a keyboard that follows the phone's colours and night mode, a first run that talks the user through setup in their own language, and one-tap **Clear learned words**.
 
 ### Architecture
 
@@ -49,6 +56,12 @@ flowchart LR
 - **FastAPI** in Docker, behind Nginx with Let's Encrypt TLS on a self-managed VPS
 - Firebase Admin SDK + Firestore for identity and balances
 - Server-side usage metering, and purchase verification against the Google Play Developer API
+
+**Engineering & operations**
+- **CI/CD on GitHub Actions**: every push runs 88 unit tests, lint, a debug build, 14 backend test suites (668 checks) and a smoke test of the real backend container; pull requests also drive the actual keyboard on an Android emulator. Backend deploys are a CI-gated one-click job with automatic rollback.
+- **Analytics**: Firestore exported to **BigQuery** on a schedule, feeding a Looker Studio dashboard.
+- **Transactional email** from the product's own domain (SPF, DKIM and DMARC aligned), including an automated welcome email for new signups.
+- **Operational alerts** to Telegram for signups, first use, purchases and account deletions, next to server health monitoring.
 
 > **A note on detail.** Voxly is a live commercial product, so this section stops at the level above. The model and prompt design, the anti-abuse and entitlement layers, and the transliteration, prediction and swipe-decoding engines are not published. I am glad to go into depth on any of it in conversation.
 
